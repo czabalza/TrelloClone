@@ -1,0 +1,9 @@
+<h3>My Boards</h3>
+<ul>
+  <% collection.each(function(model) { %>
+    <li>
+      <a href=<%= "#boards/" + model.id %>><%= model.escape('title') %></a>
+    </li>
+  <% }) %>
+</ul>
+<a href="#boards/new">Create new board</a>
