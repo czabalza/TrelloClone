@@ -24,9 +24,12 @@ TrelloClone.Views.NewCard = Backbone.View.extend({
       success: function (card) {
         this.collection.add(card, {merge: true});
       }.bind(this),
-      error: function () {
-        debugger
-      }
+      error: function (card, response) {
+        this.$el.empty();
+        this.$el.append(response.responseJSON);
+        var view = new TrelloClone.Views.NewCard({model: card, collection: this.collection});
+        this.$el.append(view.render().$el);
+      }.bind(this)
     })
   }
 })

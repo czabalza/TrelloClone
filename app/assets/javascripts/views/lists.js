@@ -4,11 +4,12 @@ TrelloClone.Views.Lists = Backbone.View.extend({
   initialize: function (options) {
     this.board = options.board;
     this.cards = this.model.cards();
-    this.listenTo(this.cards, 'sync', this.render);
+    this.listenTo(this.cards, 'sync remove', this.render);
   },
 
   events: {
-    "click .new-card-btn": "newCard"
+    "click .new-card-btn": "newCard",
+    "click .delete-list-btn": "deleteList"
   },
 
   render: function () {
@@ -17,9 +18,9 @@ TrelloClone.Views.Lists = Backbone.View.extend({
     var content = this.template({list: this.model});
     this.$el.html(content);
     this.$el.data('list-name', this.model.name);
+    var cards = this.cards;
     this.model.cards().each(function(card){
-      // debugger
-      var cardView = new TrelloClone.Views.Card({model: card});
+      var cardView = new TrelloClone.Views.Card({model: card, collection: cards});
       that.$el.find('.cards').append(cardView.render().$el);
     })
     return this;
@@ -32,5 +33,10 @@ TrelloClone.Views.Lists = Backbone.View.extend({
     card.set('ord', 0);
     var view = new TrelloClone.Views.NewCard({model: card, collection: this.cards});
     this.$el.append(view.render().$el);
+  },
+
+  deleteList: function (event) {
+    this.model.destroy();
+    this.collection.remove(this.model);
   }
 })

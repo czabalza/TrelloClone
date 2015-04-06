@@ -19,3 +19,11 @@
 .lists-item {
   float: left;
 }
+
+.card .hover-delete-card {
+  visibility: hidden;
+}
+
+.card:hover .hover-delete-card {
+  visibility: visible;
+}
