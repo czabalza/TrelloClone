@@ -2,5 +2,7 @@ TrelloClone.Collections.Lists = Backbone.Collection.extend({
   model: TrelloClone.Models.List,
   url: 'api/lists',
 
-  comparator: 'ord'
+  comparator: function (list) {
+    return list.escape('ord');
+  }
 })

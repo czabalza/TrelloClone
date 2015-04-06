@@ -1,0 +1,11 @@
+<form>
+  Title:
+  <br>
+  <input type="text" name="title" val= "<%= card.escape('title') %>">
+  <br>
+  Description:
+  <br>
+  <textarea name="description"><%= card.escape('description') %></textarea>
+  <br>
+  <button class="create-card-btn">Create card</button>
+</form>
