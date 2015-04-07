@@ -5,6 +5,7 @@ TrelloClone.Views.Lists = Backbone.View.extend({
     this.board = options.board;
     this.cards = this.model.cards();
     this.listenTo(this.cards, 'sync remove', this.render);
+    this.$el.ready(this.onRender.bind(this));
   },
 
   events: {
@@ -38,5 +39,11 @@ TrelloClone.Views.Lists = Backbone.View.extend({
   deleteList: function (event) {
     this.model.destroy();
     this.collection.remove(this.model);
+  },
+
+  onRender: function () {
+    this.$el.draggable();
+    // this.$el.droppable();
+    // this.$el.sortable();
   }
 })

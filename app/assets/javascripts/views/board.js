@@ -2,10 +2,12 @@ TrelloClone.Views.Board = Backbone.View.extend({
   template: JST["boards/show"],
 
   initialize: function(options) {
+    this.$el.addClass("entire-board");
     this.lists = options.lists;
     this.board = options.board;
     this.listenTo(this.board, 'sync', this.render);
     this.listenTo(this.lists, 'sync remove',  this.render);
+    this.$el.ready(this.onRender.bind(this));
   },
 
   events: {
@@ -40,6 +42,17 @@ TrelloClone.Views.Board = Backbone.View.extend({
         Backbone.history.navigate("", {trigger: true});
       }
     });
+  },
 
+  onRender: function () {
+    // debugger
+    // this.$el.find('.entire-board').droppable();
+    // $('.lists-item').sortable();
+    // $('.lists-item').draggable();
+    // $('.lists-item').dropable();
+    // $('.card').sortable();
+    // $('.card').draggable();
+    // $('.lists').dropable();
+    // debugger
   }
 })

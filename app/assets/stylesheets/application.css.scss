@@ -27,3 +27,13 @@
 .card:hover .hover-delete-card {
   visibility: visible;
 }
+
+.lists-item {
+  border: 2px solid blue;
+  position: relative;
+}
+
+.card {
+  border: 2px solid purple;
+  position: relative;
+}
